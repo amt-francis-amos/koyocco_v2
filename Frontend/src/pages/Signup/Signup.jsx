@@ -27,7 +27,7 @@ const Signup = () => {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/signup', {
+      const response = await axios.post('https://koyocco-v2-server.onrender.com/api/auth/signup', {
         email,
         password,
         role,

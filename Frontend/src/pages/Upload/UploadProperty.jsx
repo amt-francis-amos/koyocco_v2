@@ -41,7 +41,7 @@ const UploadProperty = () => {
           }
           formData.append('video', values.video);
 
-          axios.post('http://localhost:5000/api/properties', formData)
+          axios.post('https://koyocco-v2-server.onrender.com/api/properties', formData)
             .then(response => {
               alert('Property uploaded successfully!');
               resetForm();

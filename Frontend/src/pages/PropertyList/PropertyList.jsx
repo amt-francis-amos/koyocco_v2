@@ -6,7 +6,7 @@ const PropertyList = () => {
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/properties')
+    axios.get('https://koyocco-v2-server.onrender.com/api/properties')
       .then(response => {
         setProperties(response.data);
       })
@@ -17,7 +17,7 @@ const PropertyList = () => {
 
   const deleteProperty = (propertyId) => {
     if (window.confirm('Are you sure you want to delete this property?')) {
-      axios.delete(`http://localhost:5000/api/properties/${propertyId}`)
+      axios.delete(`https://koyocco-v2-server.onrender.com/api/properties/${propertyId}`)
         .then(response => {
           alert('Property deleted successfully!');
           setProperties(properties.filter(property => property._id !== propertyId));
@@ -44,7 +44,7 @@ const PropertyList = () => {
                     className="w-full h-48 object-cover"
                   >
                     <source
-                      src={`http://localhost:5000/uploads/${property.video}`}
+                      src={`https://koyocco-v2-server.onrender.com/uploads/${property.video}`}
                       type="video/mp4"
                     />
                     Your browser does not support the video tag.
@@ -57,7 +57,7 @@ const PropertyList = () => {
                     {property.images.map((image, index) => (
                       <img
                         key={index}
-                        src={`http://localhost:5000/uploads/${image}`}
+                        src={`https://koyocco-v2-server.onrender.com/uploads/${image}`}
                         alt={`${property.title} - ${index + 1}`}
                         className="w-full h-48 object-cover"
                       />
