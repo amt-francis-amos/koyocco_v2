@@ -131,7 +131,7 @@ const Navbar = () => {
               onClick={toggleDropdown.bind(null, 'rental')}
             >
               <span className="flex items-center">
-                Rental <FaChevronDown size={10} className="ml-2" />
+                Property Rentals <FaChevronDown size={10} className="ml-2" />
               </span>
             </Link>
 
