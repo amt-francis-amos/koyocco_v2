@@ -211,6 +211,18 @@ router.post("/reset-password/:token", async (req, res) => {
 });
 
 
+// Admin Log Route
+router.get("/admin/logs", async (req, res) => {
+  try {
+    const users = await User.find({}, 'firstname lastname email signupLog loginLog');
+    const bookings = await Booking.find().populate('userId', 'firstname lastname email');
+
+    res.status(200).json({ users, bookings });
+  } catch (error) {
+    console.error("Error fetching logs:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 
 
 
