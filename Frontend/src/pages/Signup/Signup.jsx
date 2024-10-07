@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
-import logoImg from '../../assets/koyocco-logo.jpeg';
+import logoImg from '../../assets/koyocco-logo.jpeg'; 
 import RoleModal from '../../components/Modals/RoleModal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,7 +18,7 @@ const Signup = () => {
   const [message, setMessage] = useState('');
   const [showModal, setShowModal] = useState(true);
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,19 +41,19 @@ const Signup = () => {
           'Accept': 'application/json',
         }
       });
-
+  
       if (response.status === 201) {
-        toast.success('Signup successful!');
+        toast.success('Signup successful!'); 
         navigate('/login');
       } else {
         setMessage('Unexpected response from server');
       }
     } catch (error) {
-      console.log(error);
+      console.log(error); 
       setMessage(error.response?.data?.message || 'An error occurred');
     }
   };
-
+  
   const closeModal = () => setShowModal(false);
 
   return (

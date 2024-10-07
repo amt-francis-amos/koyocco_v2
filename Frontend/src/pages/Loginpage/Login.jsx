@@ -12,6 +12,7 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
+  // Validate email format
   const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
@@ -79,62 +80,57 @@ const Login = () => {
 
       navigate(redirectPath);
     } catch (error) {
-      setMessage(error.response?.data?.message || "Login failed");
+      console.error("Login error:", error);
+      setMessage(error.response?.data?.message || "An error occurred");
+      toast.error(error.response?.data?.message || "An error occurred");
     }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="bg-white shadow-md m-[60px] rounded-lg p-8 max-w-md w-full mx-auto">
       <ToastContainer />
-      <div className="w-full max-w-md p-8 space-y-4 bg-white rounded-lg shadow-md">
-        <div className="flex justify-center">
-          <img src={bgImage} alt="Logo" className="w-16 h-16 rounded-full" />
+      <img
+        src={bgImage}
+        alt="Logo"
+        className="mx-auto mb-6"
+        style={{ width: "80px", height: "80px" }}
+      />
+      <h1 className="text-3xl font-bold mb-6">Login</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label className="block text-gray-700">Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded-lg"
+            required
+          />
+          {errors.email && <p className="text-red-500">{errors.email}</p>}
         </div>
-        <h2 className="text-3xl font-bold text-center">Login</h2>
-        {message && <p className="text-red-500 text-xs italic text-center">{message}</p>}
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email address
-            </label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              required
-            />
-            {errors.email && <p className="text-red-500 text-xs italic">{errors.email}</p>}
-          </div>
-
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              required
-            />
-            {errors.password && <p className="text-red-500 text-xs italic">{errors.password}</p>}
-          </div>
-
-          <button
-            type="submit"
-            className="w-full py-2 px-4 bg-blue-600 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-          >
-            Sign in
-          </button>
-        </form>
-        <div className="text-center">
-          <Link to="/signup" className="text-sm text-blue-600 hover:underline">
-            Don't have an account? Sign up
-          </Link>
+        <div className="mb-4">
+          <label className="block text-gray-700">Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded-lg"
+            required
+          />
+          {errors.password && <p className="text-red-500">{errors.password}</p>}
         </div>
+        <button
+          type="submit"
+          className="bg-red-600 text-white px-4 py-2 rounded-lg w-full hover:bg-red-700"
+        >
+          Login
+        </button>
+      </form>
+      {message && <p className="mt-4 text-red-500">{message}</p>}
+      <div className="mt-4">
+        <Link to="/forgot-password" className="text-gray-900 hover:underline">
+          Forgot Password?
+        </Link>
       </div>
     </div>
   );
