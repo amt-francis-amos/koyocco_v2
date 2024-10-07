@@ -19,7 +19,7 @@ import { FeaturedPropertiesProvider } from './context/FeaturedPropertiesContext'
 import Booking from './pages/Booking/Booking';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
-import ProtectedRoute from './components/ProtectedRoute'; // Import the ProtectedRoute
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'; // Import the ProtectedRoute
 
 function App() {
   const role = localStorage.getItem('role'); // Get user role from local storage
