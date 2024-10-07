@@ -51,6 +51,7 @@ const Login = () => {
       );
 
       const { token, role } = response.data;
+      console.log(role)
 
       if (!token || !role) {
         setMessage("Login failed: No token or role received");
@@ -61,7 +62,7 @@ const Login = () => {
       localStorage.setItem("role", role); // Ensure role is stored
 
       const redirectPath =
-        role === "admin"
+        role === "Admin"
           ? "/adminDashboard"
           : role === "Property Owner"
           ? "/ownerDashboard"
