@@ -1,3 +1,4 @@
+// src/App.js
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
@@ -18,17 +19,40 @@ import { FeaturedPropertiesProvider } from './context/FeaturedPropertiesContext'
 import Booking from './pages/Booking/Booking';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
-
+import ProtectedRoute from './components/ProtectedRoute'; // Import the ProtectedRoute
 
 function App() {
+  const role = localStorage.getItem('role'); // Get user role from local storage
+
   return (
     <FeaturedPropertiesProvider>
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/adminDashboard' element={<AdminDashboard />} />
-        <Route path='/ownerDashboard' element={<OwnerDashboard />} />
-        <Route path='/agentDashboard' element={<AgentDashboard />} />
+        <Route 
+          path='/adminDashboard' 
+          element={
+            <ProtectedRoute role={role}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path='/ownerDashboard' 
+          element={
+            <ProtectedRoute role={role}>
+              <OwnerDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path='/agentDashboard' 
+          element={
+            <ProtectedRoute role={role}>
+              <AgentDashboard />
+            </ProtectedRoute>
+          } 
+        />
         <Route path='/login' element={<Login />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />

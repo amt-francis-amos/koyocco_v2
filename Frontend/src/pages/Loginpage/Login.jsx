@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
@@ -58,6 +59,7 @@ const Login = () => {
       }
 
       localStorage.setItem("authToken", token);
+      localStorage.setItem("role", role); // Store the role in local storage
 
       const redirectPath =
         role === "admin"
