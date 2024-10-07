@@ -6,7 +6,7 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "proxy": "https://koyocco-v2-server.onrender.com",
+  "proxy": "https://koyocco-v2-b8w4.vercel.app",
   "keywords": [],
   "author": "",
   "license": "ISC",
