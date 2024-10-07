@@ -6,19 +6,18 @@ const Property = require('../models/Property');
 
 const router = express.Router();
 
-// Ensure that 'uploads/' directory exists
 const uploadDir = path.join(__dirname, '../uploads');
 if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true }); // Ensure that uploads directory is created recursively
+  fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-// Configure multer for file uploads
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, uploadDir); // Use uploadDir variable for the destination
+    cb(null, uploadDir); 
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname); // Ensure unique filenames
+    cb(null, Date.now() + '-' + file.originalname); 
   },
 });
 
@@ -46,10 +45,10 @@ router.post(
         video,
       });
 
-      await newProperty.save(); // Save property to the database
+      await newProperty.save();
       res.status(201).json(newProperty);
     } catch (error) {
-      console.error('Error uploading property:', error.message); // Improved error logging
+      console.error('Error uploading property:', error.message); 
       res.status(500).json({ message: 'Server Error' });
     }
   }
@@ -64,7 +63,7 @@ router.get('/:id', async (req, res) => {
     }
     res.status(200).json(property);
   } catch (error) {
-    console.error('Error fetching property:', error.message); // Improved error logging
+    console.error('Error fetching property:', error.message); 
     res.status(500).json({ message: 'Server Error' });
   }
 });
@@ -75,7 +74,7 @@ router.get('/', async (req, res) => {
     const properties = await Property.find();
     res.status(200).json(properties);
   } catch (error) {
-    console.error('Error fetching properties:', error.message); // Improved error logging
+    console.error('Error fetching properties:', error.message); 
     res.status(500).json({ message: 'Server Error' });
   }
 });
