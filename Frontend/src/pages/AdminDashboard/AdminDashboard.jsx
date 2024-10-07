@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUsers, FaChartBar, FaCog } from 'react-icons/fa';
+import axios from 'axios'; // Import Axios
 
 const AdminDashboard = () => {
   const [logs, setLogs] = useState({ users: [], bookings: [] });
 
   useEffect(() => {
     const fetchLogs = async () => {
-      const response = await fetch('https://koyocco-v2-server.onrender.com/api/auth/admin/logs', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}` // Use token for authentication
-        },
-      });
-      const data = await response.json();
-      setLogs(data);
+      try {
+        const response = await axios.get('https://koyocco-v2-server.onrender.com/api/auth/admin/logs', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`, // Use token for authentication
+          },
+        });
+        setLogs(response.data);
+      } catch (error) {
+        console.error("Error fetching logs:", error); // Log the error for debugging
+      }
     };
 
     fetchLogs();
