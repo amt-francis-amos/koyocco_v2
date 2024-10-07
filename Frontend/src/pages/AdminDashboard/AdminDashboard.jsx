@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUsers, FaChartBar, FaCog } from 'react-icons/fa';
-import axios from 'axios'; // Import Axios
+import axios from 'axios'; 
 
 const AdminDashboard = () => {
   const [logs, setLogs] = useState({ users: [], bookings: [] });
