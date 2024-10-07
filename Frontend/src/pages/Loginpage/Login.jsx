@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
@@ -59,7 +58,7 @@ const Login = () => {
       }
 
       localStorage.setItem("authToken", token);
-      localStorage.setItem("role", role); // Store the role in local storage
+      localStorage.setItem("role", role); // Ensure role is stored
 
       const redirectPath =
         role === "admin"
@@ -80,7 +79,7 @@ const Login = () => {
         progress: undefined,
       });
 
-      navigate(redirectPath);
+      navigate(redirectPath); // Redirect based on role
     } catch (error) {
       console.error("Login error:", error);
       setMessage(error.response?.data?.message || "An error occurred");
