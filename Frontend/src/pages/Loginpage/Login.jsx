@@ -59,7 +59,7 @@ const Login = () => {
       }
 
       localStorage.setItem("authToken", token);
-      localStorage.setItem("role", role); // Ensure role is stored
+      localStorage.setItem("role", role); 
 
       const redirectPath =
         role === "Admin"

@@ -12,12 +12,12 @@ const AdminDashboard = () => {
         const response = await axios.get('https://koyocco-v2-server.onrender.com/api/auth/admin/logs', {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`, // Use token for authentication
+            'Authorization': `Bearer ${localStorage.getItem('token')}`, 
           },
         });
         setLogs(response.data);
       } catch (error) {
-        console.error("Error fetching logs:", error); // Log the error for debugging
+        console.error("Error fetching logs:", error); 
       }
     };
 
